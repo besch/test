@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Login">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  	<title></title>
+  	<meta name="description" content="">
+  	<meta name="viewport" content="width=device-width">
+  	<link rel="stylesheet" type="text/css" href="app/css/styles.css">
+</head>
+
+<body ng-controller="Main">
+
+	<form ng-cloak name="form" method="post" action="//api.test/auth">
+	<fieldset>
+		<label for="email">email:</label>
+		<input ng-model="user.email" type="email" name="email" id="email" />
+		<span ng-show="form.email.$error.email" class="error">Nie poprawny adres email</span>
+		<span ng-show="form.email.$dirty && form.email.$error.required" class="error">Adres email jest wymagany</span>
+		
+		<label for="password">password:</label>
+		<input ng-model="user.pass" check-password type="password" name="password" id="password" />
+		<span ng-show="form.password.$error.oneDigit" class="error">Hasło musi zawierać przynajmniej 1 cyfrę</span>
+		<span ng-show ="form.password.$error.oneCapital" class="error">Hasło musi zawierać przynajmniej 1 duża literę</span>
+		<span ng-show="form.password.$error.sixChars" class="error">Hasło musi składać się conajmniej z 6 znaków</span>
+		<span ng-show="form.password.$dirty && form.password.$error.required" class="error">Hasło jest wymagane</span>
+		<span ng-show="serverResponse !=''" class="error"></span>
+
+		<input ng-model="submitData" type="submit" value="login" />
+	</fieldset>
+	</form>
+
+	<script type="text/javascript" src="lib/angular.min.js"></script>
+	<script type="text/javascript" src="app/js/app.js"></script>
+</body>
+</html>
